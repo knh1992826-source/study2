@@ -12,7 +12,7 @@
 
 ---
 
-**🔗 배포**: https://jeju-myth-map.vercel.app  ·  **💻 소스**: https://github.com/knh1992826-source/study2/tree/jeju-course-maker
+**🔗 배포**: https://jeju-myth-map.vercel.app  ·  **💻 소스**: https://github.com/knh1992826-source/study2
 
 ---
 
