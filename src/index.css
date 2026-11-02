@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap');
+
+:root {
+  --ink: #0b1020;
+  --gold: #f3c677;
+}
+body {
+  background: radial-gradient(circle at 50% -10%, #1b2a55, var(--ink) 60%) fixed;
+  font-family: 'Noto Serif KR', serif;
+}
+h1, h2, h3, h4, h5, h6, .navbar-brand { font-family: 'Noto Serif KR', serif; }
+.myth-nav { background: rgba(8, 12, 28, 0.85); border-bottom: 1px solid rgba(243, 198, 119, 0.4); }
+.navbar-brand { color: var(--gold) !important; }
+.hero {
+  background: linear-gradient(135deg, rgba(243, 198, 119, 0.18), rgba(123, 184, 255, 0.12));
+  border: 1px solid rgba(243, 198, 119, 0.35);
+  border-radius: 1.25rem;
+}
+.card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); }
+.scene-wrap {
+  position: relative;
+  height: 70vh;
+  min-height: 420px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(243, 198, 119, 0.4);
+}
+.scene-hud {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  font-size: 0.8rem;
+  color: #c9d4f0;
+  pointer-events: none;
+}
+.myth-panel {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 1rem;
+  max-height: 70vh;
+  overflow: auto;
+}
+.tool-badge { font-family: ui-monospace, monospace; }
