@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>제주 코스 메이커 · 발표자료</title>
+<style>
+:root{
+  --basalt:#1F2226; --stone:#3A3F45; --tang:#F28C28; --tang-d:#B85F0A; --sea:#1E88A8; --sea-d:#0F5C73;
+  --canola:#F7C93B; --camellia:#C73A4B; --cream:#F7F2E8; --ink:#23262B; --muted:#6B6F76; --mist:#CFE6EE;
+  --leaf:#3E8E5A; --sand:#D9B77A;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;background:#083248;color:#fff;overflow-x:hidden}
+section{position:relative;min-height:100vh;scroll-snap-align:start;padding:clamp(24px,5vh,56px) clamp(20px,6vw,88px) 72px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;
+  background:linear-gradient(180deg,#1B7F9E 0%,#17708E 18%,#12607A 38%,#0E5068 60%,#0B4156 80%,#083248 100%)}
+section::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46px;background:#6B5B43;z-index:0;
+  clip-path:ellipse(70% 100% at 50% 100%)}
+.inner{position:relative;z-index:2;max-width:1100px;width:100%;margin:0 auto}
+.shimmer{position:absolute;top:0;left:0;right:0;height:90px;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 160px 6px at 15% 20px,rgba(255,255,255,.2),transparent),radial-gradient(ellipse 220px 6px at 55% 40px,rgba(255,255,255,.18),transparent),radial-gradient(ellipse 180px 6px at 85% 14px,rgba(255,255,255,.2),transparent)}
+.deco{position:absolute;z-index:1;font-size:clamp(28px,4vw,48px);pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+.swim{animation:swim 14s linear infinite}
+.bob{animation:bob 4s ease-in-out infinite}
+@keyframes swim{from{transform:translateX(-12vw)}to{transform:translateX(112vw)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.bub{position:absolute;bottom:-20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);background:rgba(255,255,255,.12);z-index:1;animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-110vh)}}
+h1.title{font-size:clamp(28px,4.4vw,48px);font-weight:800;display:flex;align-items:center;gap:14px;margin-bottom:6px}
+h1.title::before{content:"🍊";font-size:.8em}
+.sub{color:var(--mist);font-size:clamp(14px,1.7vw,19px);margin-bottom:clamp(16px,3vh,32px)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:#fff;color:var(--ink);border-radius:14px;padding:18px 20px;box-shadow:0 8px 20px rgba(0,0,0,.25);transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+.card.dark{background:var(--basalt);color:#fff}
+.card h3{font-size:clamp(15px,1.6vw,19px);margin-bottom:6px;color:var(--basalt)}
+.card.dark h3{color:var(--canola)}
+.card p{font-size:clamp(12.5px,1.25vw,15px);line-height:1.6}
+.badge{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;font-weight:800;font-size:18px;color:#fff;margin-bottom:10px}
+.row{display:flex;align-items:center;gap:14px}
+.stat{text-align:center}.stat b{display:block;font-size:clamp(26px,3.6vw,42px);margin:6px 0}.stat span{font-size:14px;line-height:1.5;opacity:.95}
+.src{position:absolute;left:clamp(20px,6vw,88px);bottom:52px;font-size:11.5px;color:#BFD3DB;z-index:2;max-width:80%}
+.pill{display:inline-block;background:var(--tang);color:#fff;font-weight:700;border-radius:999px;padding:8px 18px;font-size:14px}
+.q{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;background:#fff;color:var(--ink);border-radius:14px;padding:12px 18px;margin-bottom:12px;box-shadow:0 8px 20px rgba(0,0,0,.25);font-weight:700;font-size:clamp(14px,1.6vw,18px);line-height:1.5}
+.q .badge{margin:0;width:42px;height:42px;font-size:14px}
+.ans{cursor:pointer;min-width:170px;text-align:center;border:0;font-family:inherit;transition:.25s}
+.ans.hide{filter:blur(7px);background:var(--tang)}
+.ans.hide::after{content:" 👆";filter:none}
+.hint{font-size:13px;color:var(--mist);margin-top:4px}
+.bars{display:flex;align-items:flex-end;gap:22px;height:230px;padding:10px 6px 0;border-bottom:2px solid #D9D2C0}
+.bar{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;font-weight:700;color:var(--ink);font-size:14px}
+.bar i{display:block;width:70%;border-radius:8px 8px 0 0;transition:height 1.2s cubic-bezier(.2,.8,.2,1);height:0}
+.barlab{display:flex;gap:22px;padding:8px 6px 0;color:var(--ink);font-size:13px;text-align:center}.barlab span{flex:1}
+ul.dots{list-style:none;padding:0}ul.dots li{padding:8px 0 8px 22px;position:relative;line-height:1.6;font-size:clamp(13px,1.35vw,16px)}
+ul.dots li::before{content:"";position:absolute;left:0;top:16px;width:9px;height:9px;border-radius:50%;background:var(--tang)}
+.flow{display:flex;align-items:stretch;gap:10px}.flow .card{flex:1;text-align:center}.flow .arr{align-self:center;font-size:26px;color:var(--mist)}
+@media(max-width:820px){.flow{flex-direction:column}.flow .arr{transform:rotate(90deg)}}
+code{font-family:Consolas,monospace;font-weight:700;color:var(--sea-d)}
+.cover{background:linear-gradient(180deg,#151B2E 0%,#24243F 16%,#4A2F45 30%,#8A3F3F 44%,#D66A2C 58%,#1B7F9E 66%,#12607A 80%,#083248 100%)}
+.cover .sun{position:absolute;right:12%;top:32%;width:clamp(120px,22vw,260px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#F9A94F 0 40%,#F28C28 41%);z-index:1}
+.cover .mt{position:absolute;right:2%;top:30%;width:clamp(260px,52vw,640px);height:clamp(120px,22vw,260px);background:#2B3040;clip-path:polygon(50% 0,100% 100%,0 100%);z-index:1}
+.cover h2{font-size:clamp(40px,8vw,92px);font-weight:900;line-height:1.1;margin:8px 0 14px;text-shadow:0 4px 14px rgba(0,0,0,.45)}
+.cover .kicker{color:var(--canola);font-weight:700;font-size:clamp(14px,1.8vw,20px)}
+.cover p.lead{font-size:clamp(15px,2vw,22px);color:#FFE9C7;line-height:1.6}
+.cover .by{margin-top:26px;font-size:15px}
+.star{position:absolute;background:#fff;border-radius:50%;z-index:1}
+.glint{position:absolute;right:14%;z-index:1;height:5px;border-radius:3px;background:rgba(249,192,106,.7)}
+#nav{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:7px}
+#nav a{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.4);display:block;transition:.2s}
+#nav a.on{background:var(--tang);transform:scale(1.5)}
+#count{position:fixed;right:18px;bottom:12px;z-index:50;font-size:13px;color:#E8E0CC;background:rgba(0,0,0,.3);padding:3px 10px;border-radius:999px}
+.qr{width:150px;height:150px;border-radius:10px;background:#fff;padding:6px}
+a.lnk{color:var(--sea-d);text-decoration:none}
+@media(max-width:700px){#nav{display:none}}
+</style>
+</head>
+<body>
+<nav id="nav"></nav><div id="count"></div>
+<main id="deck"></main>
+
+<script>
+const C = {tang:'#F28C28',sea:'#1E88A8',cam:'#C73A4B',leaf:'#3E8E5A',canola:'#F7C93B',stone:'#3A3F45',tangd:'#B85F0A',sead:'#0F5C73'}
+const el = (h)=>{const t=document.createElement('template');t.innerHTML=h.trim();return t.content.firstChild}
+const badge=(c,t)=>`<div class="badge" style="background:${c}">${t}</div>`
+const head=(t,s)=>`<h1 class="title">${t}</h1>${s?`<p class="sub">${s}</p>`:''}`
+const src=(t)=>`<div class="src">출처: ${t}</div>`
+const quizRows=(rows)=>rows.map((r,i)=>`<div class="q">${badge(r[2],'Q'+(i+1))}<div>${r[0]}</div><button class="pill ans hide" onclick="this.classList.toggle('hide')" aria-label="정답 보기">${r[1]}</button></div>`).join('')
+const decor={
+  a:'<span class="deco swim" style="top:62%;animation-duration:16s">🐠</span><span class="deco bob" style="right:6%;bottom:90px">🪼</span>',
+  b:'<span class="deco swim" style="top:74%;animation-duration:20s;animation-delay:-6s">🐟</span><span class="deco bob" style="left:5%;bottom:84px">🐢</span>',
+  c:'<span class="deco swim" style="top:50%;animation-duration:24s;animation-delay:-10s">🐡</span><span class="deco bob" style="right:5%;bottom:86px">🦀</span>'
+}
+let di=0; const dec=()=>decor['abc'[di++%3]]
+
+const slides=[
+// 1 표지
+{cls:'cover',html:`
+ <div class="sun"></div><div class="mt"></div>
+ <div class="glint" style="top:72%;width:12%"></div><div class="glint" style="top:75%;width:9%;right:16%"></div><div class="glint" style="top:78%;width:14%"></div>
+ <span class="deco" style="left:3%;top:50%;font-size:64px">🌴</span><span class="deco" style="right:3%;top:52%;font-size:72px">🌴</span>
+ <span class="deco bob" style="left:20%;top:58%;font-size:54px">🗿</span>
+ <span class="deco" style="left:46%;top:60%">⛵</span>
+ <span class="deco swim" style="top:80%;animation-duration:18s">🐠</span><span class="deco swim" style="top:86%;animation-duration:26s;animation-delay:-9s">🐢</span><span class="deco bob" style="right:14%;top:78%">🪼</span>
+ <div class="inner"><div class="kicker">제주 IP × 공공데이터 × AI 에이전트</div><h2>제주 코스 메이커</h2>
+ <p class="lead">오늘 날씨에 맞춰 제주 하루를 짜 주는<br>3D 지도 + AI 여행코스 메이커</p>
+ <div class="by">김예현 · 제주대 청년도약 부트캠프 1기 BOOT UP</div>
+ <div class="hint" style="margin-top:18px">↓ 스크롤하거나 ← → ↑ ↓ 키로 넘기세요</div></div>`},
+// 2 숫자
+{html:()=>`${head('숫자로 보는 제주','이 섬에는 해마다 천만 명 넘게 찾아옵니다')}
+ <div class="grid g4">${[['1,376만','2024년 연간 관광객',C.tang],['3관왕','유네스코<br>자연과학 3개 분야',C.canola],['1,947m','한라산<br>남한 최고봉','#7FD0E8'],['3.8m/s','제주 평균 풍속<br>(서울 2.3m/s)','#FF8FA0']].map(s=>`<div class="card dark stat"><div style="width:14px;height:14px;border-radius:50%;background:${s[2]};margin:0 auto"></div><b style="color:${s[2]}">${s[0]}</b><span>${s[1]}</span></div>`).join('')}</div>
+ <p style="margin-top:22px;font-size:clamp(14px,1.6vw,18px)">관광객이 많은 만큼 “오늘 어디를 가야 하지?”라는 질문도 매일 수백만 번 생깁니다.</p>
+ ${src('언론 보도(2024 관광객 약 1,376만 명) · KOTRA 제주 기후 자료 · 한라산 높이는 일반 공개 수치')}`},
+// 3 핫한 제주
+{html:()=>`${head('요즘 핫한 제주','세계도, 러너도, 해녀도, 일하러 오는 사람도 제주로 갑니다')}
+ <div class="grid g2">${[['🌏','론리플래닛 2026 세계 25대 여행지','성산포·한라산·산방산과 함께 제주가 “2026년 꼭 가야 할 곳”에 선정',C.tang],['🏃','제주 오름 트레일런','2026년 서귀포 표선면 가시리 일원, 러너 약 2,000명이 오름을 달렸다',C.leaf],['🤿','해녀 문화 체험','제19회 제주해녀축제 프로그램 33개 · 해녀문화는 유네스코 인류무형문화유산',C.sea],['💻','워케이션','제주도가 오피스·숙박비를 지원 — 2026 하반기 6박 7일 최대 30만 원(선착순 350명)',C.cam]].map(h=>`<div class="card"><div class="row"><div class="badge" style="background:${h[3]};margin:0;font-size:22px">${h[0]}</div><h3 style="margin:0">${h[1]}</h3></div><p style="margin-top:10px">${h[2]}</p></div>`).join('')}</div>
+ <p style="margin-top:18px;color:var(--canola);font-weight:700;font-size:clamp(13px,1.5vw,17px)">→ 산·바다·체험 여행이 뜨는 지금, 오름·해안·한라산 코스를 날씨에 맞춰 짜 주는 앱이 딱 맞습니다</p>
+ ${src('서울신문(2026.2) · 언론 보도(오름 트레일런·해녀축제·워케이션 지원) · 스카이스캐너 2026 트렌드')}`},
+// 4 제주어
+{html:()=>`${head('제주어 한마디','알고 가면 더 재밌는 제주 말')}
+ <div class="grid g2">${[['혼저옵서예','어서 오세요','제주 여행에서 가장 먼저 듣는 인사',C.tang],['폭싹 속았수다','정말 수고 많으셨습니다','2025년 화제 드라마 제목으로 유명해진 말',C.cam],['괸당','이웃·친척, 정을 나누는 사이','제주 사람들의 공동체 문화',C.sea],['숨비소리','해녀가 물 밖으로 나와 내쉬는 숨','제주 바다의 상징 같은 소리',C.leaf]].map((w,i)=>`<div class="card"><div class="row">${badge(w[3],i+1).replace('margin-bottom:10px','')}<div style="font-size:clamp(20px,2.4vw,28px);font-weight:800">${w[0]}</div></div><p style="margin-top:8px;color:var(--sead);font-weight:700">${w[1]}</p><p style="color:var(--muted)">${w[2]}</p></div>`).join('')}</div>
+ ${src('일반적으로 알려진 제주어 · 드라마 제목은 2025년 방영작')}`},
+// 5 번역 퀴즈
+{html:()=>`${head('제주어 번역기 돌려 보기','이 말, 무슨 뜻일까요? 주황 칸을 눌러 정답을 확인하세요')}
+ ${quizRows([['“삼춘, 어디 감수광?” — 여기서 삼춘은 누구?','동네 어른 누구나',C.tang],['맞장구칠 때 쓰는 “게메마씸”의 뜻은?','그러게요',C.cam],['식당에서 듣는 “하영 먹읍서”의 뜻은?','많이 드세요',C.sea],['따뜻한 온도를 칭찬하는 “맨도롱 또똣”의 뜻은?','알맞게 따뜻하다',C.leaf]])}
+ <p class="hint">🐢 게메마씸~ 다 맞히셨죠?</p>
+ ${src('일반적으로 알려진 제주어 — 지역·세대에 따라 표현과 뜻이 조금 다를 수 있음')}`},
+// 6 퀴즈
+{html:()=>`${head('제주 퀴즈 타임!','교과서엔 잘 안 나오는 제주 — 정답은 주황 칸을 눌러 보세요')}
+ ${quizRows([['도둑·대문·거지가 없다는 제주의 별칭은?','삼무(三無)',C.tang],['대문 대신 나무 3개를 걸쳐 두던 것은?','정낭',C.cam],['곶자왈의 ‘곶’과 ‘자왈’은 무슨 뜻?','곶=숲, 자왈=자갈',C.sea],['제주를 만들었다고 전해지는 거인 여신은?','설문대할망',C.leaf]])}
+ <p class="hint">🗿 하르방이 지켜보고 있어요</p>
+ ${src('국내 언론 보도(삼다·삼무·정낭·곶자왈) · 설문대할망 신화(Wikipedia 등)')}`},
+// 7 해녀
+{html:()=>`${head('바다의 엄마들, 줄어들고 있다','유네스코가 지킨다는 해녀 문화, 정작 해녀는 빠르게 줄고 있습니다')}
+ <div class="grid g2" style="grid-template-columns:1.2fr 1fr">
+  <div class="card"><h3>제주 해녀 수 (대략)</h3><div class="bars" data-bars>
+   <div class="bar">23,000<i data-h="100" style="background:${C.sea}"></i></div><div class="bar">4,500<i data-h="20" style="background:${C.tang}"></i></div></div>
+   <div class="barlab"><span>1960년대 전성기</span><span>현재</span></div></div>
+  <div class="card dark"><h3>알아 둘 것</h3><ul class="dots"><li>1960년대 초, 제주 수산업 수입의 약 60%가 해녀 몫</li><li>현재 약 4,500명 이하, 그중 84%가 60세 이상</li><li>2016년 유네스코 인류무형문화유산 등재</li></ul></div></div>
+ ${src('Wikipedia(Haenyeo) 등 — 수치는 자료마다 다를 수 있는 대략값')}`},
+// 8 유네스코
+{html:()=>`${head('작은 섬, 유네스코 자연 3관왕','2002 → 2007 → 2010, 세 번의 인증을 차례로 받았습니다')}
+ <div class="grid g3">${[['2002','생물권보전지역','한라산국립공원 · 영천·효돈천 · 문섬·범섬·섶섬',C.sea],['2007','세계자연유산','한라산 · 성산일출봉 · 거문오름용암동굴계',C.tang],['2010','세계지질공원','2022년 세 번째 재인증을 받아 유지 중',C.cam]].map(e=>`<div class="card" style="text-align:center"><div class="badge" style="background:${e[3]};width:70px;height:70px;font-size:18px;margin:0 auto 10px">${e[0]}</div><h3 style="font-size:20px">${e[1]}</h3><p>${e[2]}</p></div>`).join('')}</div>
+ ${src('국내 언론 보도(2002·2007·2010 인증, 2022 지질공원 재인증)')}`},
+// 9 하늘
+{html:()=>`${head('같은 제주, 다른 하늘','연강수량이 권역마다 최대 1.7배 차이 — 그래서 권역별로 나눴습니다')}
+ <div class="grid g2" style="grid-template-columns:1.4fr 1fr">
+  <div class="card"><h3>지역별 연강수량(mm)</h3><div class="bars" data-bars>
+   ${[['1,457',1457,C.sea],['1,851',1851,C.tang],['1,841',1841,C.canola],['1,095',1095,C.cam]].map(b=>`<div class="bar">${b[0]}<i data-h="${(b[1]/1900*100).toFixed(0)}" style="background:${b[2]}"></i></div>`).join('')}</div>
+   <div class="barlab"><span>제주시(북)</span><span>서귀포(남)</span><span>성산(동)</span><span>고산(서)</span></div></div>
+  <div class="card dark"><h3>앱의 해법</h3><ul class="dots"><li>5개 권역을 따로 보여 주고</li><li>기상청 예보로 지금 갈 곳을 추천</li><li>비 오는 날은 실내 코스로</li></ul></div></div>
+ ${src('KOTRA 제주 기후 자료(지역별 연강수량·평균풍속 3.8m/s, 고산 6.9m/s)')}`},
+// 10 기획
+{html:()=>`${head('기획 의도','어디를, 어떤 순서로, 비가 오면?')}
+ <div class="grid g3">${[['문제',C.cam,'코스·날씨·문화유산 정보가 따로 흩어져 있어 하루 일정을 짜기 어렵다'],['아이디어',C.tang,'제주를 5개 권역 구슬로 3D 지도에 올리고, 클릭하면 코스와 국가유산이 열린다'],['결과',C.sea,'AI가 날씨를 보고 오전 → 점심 → 오후 → 저녁 코스를 짜 준다']].map((c,i)=>`<div class="card">${badge(c[1],i+1)}<h3 style="font-size:24px">${c[0]}</h3><p>${c[2]}</p></div>`).join('')}</div>`},
+// 11 권역
+{html:()=>`${head('5개 권역 여행코스','각 권역은 3D 지도 위의 구슬 하나가 됩니다')}
+ <div class="grid g3">${[['제주시 도심·역사','삼성혈·관덕정 같은 유적과 시장·카페. 비 오는 날도 OK',C.stone],['성산·우도 해안','일출봉과 우도, 푸른 바다를 따라 걷는 동부 해안',C.sea],['서귀포 남부','폭포와 해안 절벽, 감귤밭과 올레길이 이어지는 남부',C.tang],['애월·한림 서부','노을 맛집 해안도로와 협재 바다, 한림 공원',C.cam],['한라산 중산간','한라산 둘레와 오름, 숲길을 걷는 트레킹',C.leaf]].map(m=>`<div class="card"><div class="row"><div style="width:28px;height:28px;border-radius:50%;background:${m[2]}"></div><h3 style="margin:0">${m[0]}</h3></div><p style="margin-top:8px">${m[1]}</p></div>`).join('')}
+ <div class="card dark"><h3>일주 코스</h3><p>4개 해안 권역을 금색 경로선으로 잇고, 러너가 달리며 순서를 보여 줍니다</p></div></div>`},
+// 12 특산물
+{html:()=>`${head('코스에 맛을 더하다: 제주 특산물','관광공사 음식점(39) 데이터로 코스마다 먹거리를 함께 추천합니다')}
+ <div class="grid g3">${[['🍊','감귤·한라봉','겨울 노지감귤부터 한라봉·천혜향까지, 제주 대표 과일',C.tang],['🐖','흑돼지','오겹살·근고기, 제주 향토 음식의 대표 주자',C.cam],['🐟','갈치·옥돔','제주 바다의 대표 생선, 구이·조림·국으로',C.sea],['🐚','전복·오분자기','해녀가 따 오는 바다 먹거리, 죽과 뚝배기',C.sead],['🥜','우도 땅콩','우도의 명물, 땅콩 아이스크림과 막걸리',C.tangd],['🌾','메밀','빙떡·메밀국수·메밀꽃밭까지 이어지는 제주의 맛',C.leaf]].map(f=>`<div class="card"><div class="row"><div class="badge" style="background:${f[3]};margin:0;font-size:22px">${f[0]}</div><h3 style="margin:0">${f[1]}</h3></div><p style="margin-top:8px">${f[2]}</p></div>`).join('')}</div>`},
+// 13 날씨 추천
+{html:()=>`${head('날씨 맞춤 추천은 이렇게','기상청 단기예보 → 하늘·강수·풍속 → 코스 방향')}
+ ${[['☀️ 맑음','#F7C93B','해안 드라이브·오름·올레길 같은 야외 코스'],['☁️ 흐림·바람','#7FD0E8','3D 하늘에 구름·바람 입자가 흐름, 가까운 코스로 단축'],['🌧️ 비·강수 높음','#FF8FA0','박물관·시장·국가유산 등 실내 위주 코스']].map(r=>`<div class="card dark row" style="margin-bottom:14px;gap:24px"><div style="font-size:clamp(18px,2.2vw,24px);font-weight:800;color:${r[1]};min-width:190px">${r[0]}</div><div style="font-size:clamp(14px,1.6vw,18px)">${r[2]}</div></div>`).join('')}
+ <p class="hint">화면 우측 패널에 “오늘은 실내/야외 추천” 문장이 함께 표시됩니다</p>`},
+// 14 3D
+{html:()=>`${head('3D 코스 지도','Three.js — 데이터가 3D 세계에 살아 움직입니다')}
+ <div class="grid g2">${[['한라산과 오름','한라산·오름 38개·바다·별하늘을 직접 모델링하고 금색 일주 경로선을 그림',C.tang],['권역 구슬','5개 구슬을 클릭하면 그 권역의 여행코스·국가유산 패널이 열림',C.sea],['날씨 연동','흐림이면 구름이 끼고 풍속만큼 바람이 흐르며 실내/야외를 안내',C.cam],['자유 시점','마우스로 회전·확대(OrbitControls), 구슬은 Raycaster로 클릭',C.leaf]].map((it,i)=>`<div class="card"><div class="row">${badge(it[2],i+1).replace('margin-bottom:10px','')}<h3 style="margin:0">${it[0]}</h3></div><p style="margin-top:8px">${it[1]}</p></div>`).join('')}</div>
+ <p style="margin-top:16px"><a class="pill" style="text-decoration:none" href="/world">🗺️ 3D 지도 직접 열어 보기</a></p>`},
+// 15 공공데이터
+{html:()=>`${head('공공데이터 API 3종','화면과 AI 에이전트가 같은 함수를 재사용합니다')}
+ ${[['한국관광공사','국문 관광정보 서비스','여행코스(25)·관광지(12)·문화시설(14)·축제(15)·음식점(39)','/api/tour',C.tang],['기상청','단기예보 조회서비스','기온·하늘·강수확률·풍속, 제주시(53,38)·서귀포(52,33)','/api/weather',C.sea],['국가유산청','국가유산 검색','코스에 넣을 역사·문화 정차지 (ccbaCtcd 50 = 제주)','/api/heritage',C.cam]].map((r,i)=>`<div class="card row" style="margin-bottom:14px;gap:20px;flex-wrap:wrap">${badge(r[4],i+1).replace('margin-bottom:10px','')}<div style="min-width:170px"><h3 style="margin:0">${r[0]}</h3><div style="color:var(--muted);font-size:13px">${r[1]}</div></div><p style="flex:1;min-width:200px">${r[2]}</p><code>${r[3]}</code></div>`).join('')}`},
+// 16 아키텍처
+{html:()=>`${head('아키텍처','API 키는 서버 함수에만 — 브라우저에는 노출되지 않습니다')}
+ <div class="flow">
+  <div class="card dark"><h3>React 앱</h3><p>Router · Zustand<br>Bootstrap · Three.js</p></div><div class="arr">➜</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:12px"><div class="card" style="background:${C.sead};color:#fff;text-align:center"><h3 style="color:#fff">Vercel 서버 함수</h3><p>/api/*</p></div><div class="card" style="background:#2C6E44;color:#fff;text-align:center"><h3 style="color:#fff">Supabase DB</h3><p>favorites · chats</p></div></div><div class="arr">➜</div>
+  <div style="flex:1;display:flex;flex-direction:column;gap:8px">${['한국관광공사','기상청 단기예보','국가유산청'].map(n=>`<div class="card" style="background:var(--canola);padding:12px;text-align:center;font-weight:800">${n}</div>`).join('')}<div class="card" style="background:var(--camellia);color:#fff;padding:12px;text-align:center;font-weight:800">Claude Sonnet 5.5</div></div></div>`},
+// 17 AI
+{html:()=>`${head('AI 에이전트: 스스로 도구를 고른다','LLM이 질문을 읽고 필요한 API를 골라 호출하고, 그 결과로만 답합니다')}
+ <div class="flow">${[['질문','“내일 서귀포에 비 오면 코스 짜줘”'],['도구 선택','search_tour_places<br>get_weather<br>search_heritage'],['API 호출','서버가 실제 공공 API를 호출'],['답변','날씨에 맞는 하루 코스로']].map((s,i)=>`${i?'<div class="arr">➜</div>':''}<div class="card dark">${badge(C.tang,i+1)}<h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('')}</div>
+ <div class="grid g3" style="margin-top:20px">${[['5회','도구 호출 루프 상한'],['1024','max_tokens'],['10개','전송하는 최근 대화']].map(g=>`<div class="row"><b style="font-size:clamp(24px,3vw,34px);color:var(--canola)">${g[0]}</b><span>${g[1]}</span></div>`).join('')}</div>
+ <p class="hint" style="margin-top:12px">화면에는 “에이전트가 호출한 도구” 목록이 함께 표시됩니다</p>`},
+// 18 시연
+{html:()=>`${head('시연 시나리오 4가지','질문마다 에이전트가 다른 도구를 고르는지 확인합니다')}
+ ${[['“제주시 지금 날씨 어때?”','get_weather 1회',C.sea],['“관덕정이 어떤 국가유산이야?”','search_heritage',C.cam],['“내일 서귀포에 비 오면 실내 위주 코스 짜줘”','도구 2개 이상 연속 호출',C.tang],['“제주에 있는 에펠탑 코스 알려줘”','지어내지 않고 “결과 없음”',C.leaf]].map((r,i)=>`<div class="q">${badge(r[2],i+1)}<div>${r[0]}</div><div style="color:var(--sead);font-size:.85em">→ ${r[1]}</div></div>`).join('')}`},
+// 19 스택
+{html:()=>`${head('기술 스택과 데이터 저장','새로고침해도 남는 즐겨찾기와 대화 기록')}
+ <div class="grid g2" style="grid-template-columns:1.2fr 1fr">
+  <div>${[['화면','React 19 · Vite · React Router'],['상태','Zustand (닉네임·즐겨찾기·대화)'],['디자인','Bootstrap 5 (Darkly) + 밤하늘 테마'],['3D','Three.js'],['서버','Vercel Functions (Node)'],['AI','Claude Sonnet 5.5']].map(r=>`<div class="row" style="padding:7px 0"><div style="width:12px;height:12px;border-radius:50%;background:var(--tang)"></div><b style="color:var(--canola);min-width:60px">${r[0]}</b><span>${r[1]}</span></div>`).join('')}</div>
+  <div class="card dark"><h3>Supabase</h3><ul class="dots"><li>favorites — 닉네임별 즐겨찾기</li><li>chats — 에이전트 대화 + 호출한 도구</li><li>RLS 활성화, publishable 키만 브라우저에서 사용</li></ul></div></div>`},
+// 20 배포
+{html:()=>`${head('배포와 링크')}
+ <div class="grid g2" style="grid-template-columns:1.6fr 1fr;align-items:center">
+  <div><div class="card" style="margin-bottom:14px"><div style="color:var(--muted);font-size:13px">배포 주소 (Vercel)</div><a class="lnk" href="https://jeju-myth-map.vercel.app" target="_blank"><code style="font-size:clamp(15px,2vw,22px)">https://jeju-myth-map.vercel.app</code></a></div>
+  <div class="card"><div style="color:var(--muted);font-size:13px">GitHub 저장소</div><a class="lnk" href="https://github.com/knh1992826-source/study2" target="_blank"><b style="font-size:clamp(15px,2vw,22px)">github.com/knh1992826-source/study2</b></a></div></div>
+  <div style="text-align:center"><img class="qr" src="qr.png" alt="배포 주소 QR 코드"><p class="hint" style="margin-top:8px">📱 휴대폰으로 스캔해 보세요</p></div></div>
+ <p style="margin-top:18px;font-size:14px">API 키는 Vercel 환경변수로 서버에서만 사용 · .env는 저장소에 올리지 않음</p>`},
+// 21 마무리
+{cls:'cover',html:`
+ <div class="sun"></div><div class="mt"></div>
+ <span class="deco" style="left:3%;top:50%;font-size:64px">🌴</span><span class="deco" style="right:3%;top:52%;font-size:72px">🌴</span><span class="deco bob" style="left:20%;top:58%;font-size:54px">🗿</span>
+ <span class="deco swim" style="top:82%;animation-duration:20s">🐠</span><span class="deco bob" style="right:14%;top:78%">🪼</span><span class="deco swim" style="top:88%;animation-duration:28s;animation-delay:-8s">🐢</span>
+ <div class="inner"><h1 class="title" style="color:var(--canola)">앞으로</h1>
+ <ul class="dots"><li>권역을 세분화하고 구슬을 실제 좌표로</li><li>에이전트가 만든 코스를 3D 지도 경로로 바로 표시</li><li>완성한 코스를 즐겨찾기로 저장해 공유</li></ul>
+ <h2 style="font-size:clamp(34px,6vw,64px);margin-top:20px;text-shadow:0 4px 14px rgba(0,0,0,.45)">감사합니다 🍊</h2></div>`}
+]
+
+const deck=document.getElementById('deck'), nav=document.getElementById('nav'), count=document.getElementById('count')
+slides.forEach((s,i)=>{
+  const sec=document.createElement('section'); sec.id='s'+(i+1); if(s.cls) sec.className=s.cls
+  const rnd=(n)=>Array.from({length:n},()=>`<span class="bub" style="left:${Math.random()*100}%;width:${8+Math.random()*20}px;height:${8+Math.random()*20}px;animation-duration:${9+Math.random()*12}s;animation-delay:${-Math.random()*14}s"></span>`).join('')
+  const body=typeof s.html==='function'?s.html():s.html
+  let stars=''
+  if(s.cls==='cover') for(let k=0;k<30;k++) stars+=`<span class="star" style="left:${Math.random()*100}%;top:${Math.random()*28}%;width:${2+Math.random()*2}px;height:${2+Math.random()*2}px;opacity:${.4+Math.random()*.5}"></span>`
+  sec.innerHTML=(s.cls==='cover'?stars:'<div class="shimmer"></div>')+rnd(9)+(s.cls==='cover'?'':dec())+(s.cls==='cover'?body:`<div class="inner">${body}</div>`)
+  deck.appendChild(sec)
+  const a=document.createElement('a'); a.href='#s'+(i+1); a.setAttribute('aria-label','슬라이드 '+(i+1)); nav.appendChild(a)
+})
+const secs=[...document.querySelectorAll('section')], dots=[...nav.children]
+let cur=0
+const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ cur=secs.indexOf(e.target); dots.forEach((d,i)=>d.classList.toggle('on',i===cur)); count.textContent=(cur+1)+' / '+secs.length
+  e.target.querySelectorAll('[data-h]').forEach(b=>b.style.height=b.dataset.h+'%') } }),{threshold:.55})
+secs.forEach(s=>io.observe(s))
+addEventListener('keydown',e=>{
+  const go=(n)=>{e.preventDefault();secs[Math.max(0,Math.min(secs.length-1,n))].scrollIntoView({behavior:'smooth'})}
+  if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)) go(cur+1)
+  if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) go(cur-1)
+  if(e.key==='Home') go(0); if(e.key==='End') go(secs.length-1)
+})
+</script>
+</body>
+</html>
